@@ -28,7 +28,12 @@
     "johnpbloch/wordpress-core": "^6.0.1",
     "platformsh/config-reader": "^2.4",
     "wp-cli/wp-cli-bundle": "^2.6",
-    "psy/psysh": "^0.11.8"
+    "psy/psysh": "^0.11.8",
+    "wpackagist-plugin/akismet": "^5.0",
+    "wpackagist-theme/twentynineteen": "^2.3",
+    "wpackagist-theme/twentytwentyone": "^1.6",
+    "wpackagist-theme/twentytwenty": "^2.0",
+    "wpackagist-theme/neve": "^3.3"
   },
   "config": {
     "allow-plugins": {

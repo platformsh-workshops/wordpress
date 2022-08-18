@@ -21,7 +21,7 @@ git remote -v
 git fetch $UPSTREAM_REMOTE --depth=2
 git fetch $UPSTREAM_REMOTE --tags
 git checkout $UPSTREAM_CHECKOUT
-git switch -c $CURRENT_BRANCH
+# git switch -c $CURRENT_BRANCH
 
 # Composer: name
 composer config name platformsh/fundamentals-wordpress

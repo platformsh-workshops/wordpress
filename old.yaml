@@ -5,11 +5,11 @@
 name: app
 
 # The runtime the application uses.
-type: "php:8.1"
+type: "php:7.4"
 
 # Configuration of the build of the application.
 build:
-    flavor: none
+    flavor: composer
 
 dependencies:
     php:
@@ -26,7 +26,6 @@ variables:
 hooks:
     build: |
         set -e
-        composer install
         # Copy manually-provided plugins into the plugins directory.
         # This allows manually-provided and composer-provided plugins to coexist.
         rsync -a plugins/* wordpress/wp-content/plugins/

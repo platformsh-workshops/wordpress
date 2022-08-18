@@ -62,14 +62,16 @@ composer update
 # Get files
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/wp-config.php" > wp-config.php
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/wp-cli.yml"  > wp-cli.yml
-mkdir plugins
-curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/plugins/README.txt" > plugins/README.txt
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.editorconfig" > .editorconfig
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.gitignore" > .gitignore
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.lando.upstream.yml" > .lando.upstream.yml
-curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform.app.yaml" > .platform.app.yaml
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/example.wp-config-local.php" > example.wp-config-local.php
+
+mkdir plugins
+curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/plugins/README.txt" > plugins/README.txt
+
 mkdir .platform
+curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform.app.yaml" > .platform.app.yaml
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform/services.yaml" > .platform/services.yaml
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform/routes.yaml" > .platform/routes.yaml
 

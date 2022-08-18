@@ -50,7 +50,10 @@ composer config extra.installer-paths --json '{"wordpress/wp-content/plugins/{$n
 composer install
 # Unpin johnpblock/wordpress-core
 composer require johnpbloch/wordpress-core "^$UPSTREAM_CHECKOUT"
+# P.sh specific
 composer require platformsh/config-reader wp-cli/wp-cli-bundle psy/psysh
+# Themes and plugins
+composer require wpackagist-plugin/akismet wpackagist-theme/twentynineteen wpackagist-theme/twentytwentyone wpackagist-theme/twentytwenty wpackagist-theme/neve
 
 # Prettify
 cat composer.json | jq > composer-pretty.json
@@ -70,10 +73,10 @@ curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-compos
 mkdir plugins
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/plugins/README.txt" > plugins/README.txt
 
-mkdir .platform
-curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform.app.yaml" > .platform.app.yaml
-curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform/services.yaml" > .platform/services.yaml
-curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform/routes.yaml" > .platform/routes.yaml
+# mkdir .platform
+# curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform.app.yaml" > .platform.app.yaml
+# curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform/services.yaml" > .platform/services.yaml
+# curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform/routes.yaml" > .platform/routes.yaml
 
 # Copy over files
 cd ..

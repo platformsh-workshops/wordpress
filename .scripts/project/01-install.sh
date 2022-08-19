@@ -19,7 +19,7 @@ INIT_ADMIN_PASS=$(echo -n "${PLATFORM_PROJECT_ENTROPY}" | sha1sum | awk '{print 
 adminName=$(jq -r '.project.admin_user.name' < "${ENV_SETTINGS}")
 adminEmail=$(jq -r '.project.admin_user.email' < "${ENV_SETTINGS}")
 siteTitle=$(jq -r '.project.title' < "${ENV_SETTINGS}")
-siteURL=$(echo "${PLATFORM_ROUTES}" | base64 --decode | jq -r 'to_entries[] | select(.value.id == "api") | .key')
+siteURL=$(echo "${PLATFORM_ROUTES}" | base64 --decode | jq -r 'to_entries[] | select(.value.id == "wordpress") | .key')
 
 #we create our admin user at the same time as we install the site
 wp core install --url="${siteURL}" --title="${siteTitle}" --admin_user="${adminName}" --admin_password="${INIT_ADMIN_PASS}" --admin_email="${adminEmail}"

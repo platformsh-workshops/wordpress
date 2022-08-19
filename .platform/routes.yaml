@@ -6,6 +6,7 @@
 "https://{default}/":
     type: upstream
     upstream: "app:http"
+    id: wordpress
     cache:
         enabled: true
         # Base the cache on the session cookies. Ignore all other cookies.

@@ -5,9 +5,15 @@ UPSTREAM_REMOTE=upstream
 
 UPSTREAM_CHECKOUT=6.0.1
 
-RUNTIME_VERSION='8.1'
+RUNTIME_VERSION='7.4'
+# brew install php@7.4
+brew unlink php && brew link --overwrite --force php@$RUNTIME_VERSION
+php -v
+# Use Composer 1
+# To reset to original version: composer self-update --2
+# composer self-update --1
 
-CURRENT_BRANCH=$(git branch --show-current)
+# CURRENT_BRANCH=$(git branch --show-current)
 
 # Create build dir
 mkdir build && cd build
@@ -87,6 +93,12 @@ rm -rf build
 # Final composer update
 composer update
 
+# Configure DDEV
+
 # Commit the changes
 git add .
 git commit -m "Update workshop base."
+
+
+# To reset to original version
+brew unlink php && brew link php

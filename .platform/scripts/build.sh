@@ -44,7 +44,7 @@ composer config scripts.subdirComposer.0 "cp wp-config.php wordpress/ && rm -rf 
 composer config scripts.post-install-cmd "@subdirComposer"
 
 # Composer: extra.installer-paths
-composer config extra.installer-paths --json '{"wordpress/wp-content/plugins/{$name}":["type:wordpress-plugin"], "wordpress/wp-content/themes/{$name}":["type:wordpress-themes"], "wordpress/wp-content/mu-plugins/{$name}":["type:wordpress-muplugin"]}'
+composer config extra.installer-paths --json '{"wordpress/wp-content/plugins/{$name}":["type:wordpress-plugin"], "wordpress/wp-content/themes/{$name}":["type:wordpress-theme"], "wordpress/wp-content/mu-plugins/{$name}":["type:wordpress-muplugin"]}'
 
 # Composer dependencies
 composer install

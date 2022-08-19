@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca84c9bce47202cf9d1f3e610b614ea8",
+    "content-hash": "011ab379bb0f319c4440947e760e50dc",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5098,21 +5098,39 @@
         },
         {
             "name": "wpackagist-plugin/akismet",
-            "version": "4.2.5",
+            "version": "5.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/akismet/",
-                "reference": "tags/4.2.5"
+                "reference": "tags/5.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/akismet.4.2.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/akismet.5.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/akismet/"
+        },
+        {
+            "name": "wpackagist-theme/neve",
+            "version": "3.3.6",
+            "source": {
+                "type": "svn",
+                "url": "https://themes.svn.wordpress.org/neve/",
+                "reference": "3.3.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/theme/neve.3.3.6.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-theme",
+            "homepage": "https://wordpress.org/themes/neve/"
         },
         {
             "name": "wpackagist-theme/twentynineteen",

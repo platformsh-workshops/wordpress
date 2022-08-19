@@ -33,7 +33,8 @@
     "wpackagist-theme/twentynineteen": "^2.3",
     "wpackagist-theme/twentytwentyone": "^1.6",
     "wpackagist-theme/twentytwenty": "^2.0",
-    "wpackagist-theme/neve": "^3.3"
+    "wpackagist-theme/neve": "^3.3",
+    "wpackagist-plugin/templates-patterns-collection": "^1.1"
   },
   "config": {
     "allow-plugins": {

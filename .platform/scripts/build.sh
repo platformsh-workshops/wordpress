@@ -24,7 +24,7 @@ git checkout $UPSTREAM_CHECKOUT
 # git switch -c $CURRENT_BRANCH
 
 # Composer: name
-composer config name platformsh/fundamentals-wordpress
+composer config name platformsh/workshop-wordpress
 
 # Composer: description
 composer config description "Platform.sh fundamentals workshop using Composer-based WordPress."
@@ -53,7 +53,8 @@ composer require johnpbloch/wordpress-core "^$UPSTREAM_CHECKOUT"
 # P.sh specific
 composer require platformsh/config-reader wp-cli/wp-cli-bundle psy/psysh
 # Themes and plugins
-composer require wpackagist-plugin/akismet wpackagist-theme/twentynineteen wpackagist-theme/twentytwentyone wpackagist-theme/twentytwenty wpackagist-theme/neve
+composer require wpackagist-plugin/akismet wpackagist-theme/twentynineteen wpackagist-theme/twentytwentyone wpackagist-theme/twentytwenty 
+composer require wpackagist-theme/neve wpackagist-plugin/templates-patterns-collection
 
 # Prettify
 cat composer.json | jq > composer-pretty.json

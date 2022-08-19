@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "011ab379bb0f319c4440947e760e50dc",
+    "content-hash": "530648370b641dd86511cf1cc759a451",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5113,6 +5113,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/akismet/"
+        },
+        {
+            "name": "wpackagist-plugin/templates-patterns-collection",
+            "version": "1.1.25",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/templates-patterns-collection/",
+                "reference": "tags/1.1.25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/templates-patterns-collection.1.1.25.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/templates-patterns-collection/"
         },
         {
             "name": "wpackagist-theme/neve",

@@ -1,6 +1,6 @@
 {
-  "name": "platformsh/fundamentals-wordpress",
-  "description": "Platform.sh fundamentals workshop using Composer-based WordPress.",
+  "name": "johnpbloch/wordpress",
+  "description": "WordPress is open source software you can use to create a beautiful website, blog, or app.",
   "keywords": [
     "wordpress",
     "blog",
@@ -25,15 +25,14 @@
   "require": {
     "php": ">=5.6.20",
     "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
-    "johnpbloch/wordpress-core": "^6.0.1",
+    "johnpbloch/wordpress-core": "^6.0.0",
     "platformsh/config-reader": "^2.4",
     "wp-cli/wp-cli-bundle": "^2.6",
-    "psy/psysh": "^0.11.8",
-    "wpackagist-plugin/akismet": "^5.0",
+    "psy/psysh": "^0.11.7",
+    "wpackagist-plugin/akismet": "^4.2",
     "wpackagist-theme/twentynineteen": "^2.3",
     "wpackagist-theme/twentytwentyone": "^1.6",
-    "wpackagist-theme/twentytwenty": "^2.0",
-    "wpackagist-theme/neve": "^3.3"
+    "wpackagist-theme/twentytwenty": "^2.0"
   },
   "config": {
     "allow-plugins": {
@@ -59,7 +58,7 @@
         "type:wordpress-plugin"
       ],
       "wordpress/wp-content/themes/{$name}": [
-        "type:wordpress-themes"
+        "type:wordpress-theme"
       ],
       "wordpress/wp-content/mu-plugins/{$name}": [
         "type:wordpress-muplugin"

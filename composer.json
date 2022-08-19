@@ -1,5 +1,5 @@
 {
-  "name": "platformsh/fundamentals-wordpress",
+  "name": "platformsh/workshop-wordpress",
   "description": "Platform.sh fundamentals workshop using Composer-based WordPress.",
   "keywords": [
     "wordpress",

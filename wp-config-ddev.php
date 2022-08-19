@@ -26,7 +26,9 @@ if ( getenv( 'IS_DDEV_PROJECT' ) == 'true' ) {
 	defined( 'WP_SITEURL' ) || define( 'WP_SITEURL', WP_HOME . '/wordpress' );
 
 	/** Enable debug */
-	defined( 'WP_DEBUG' ) || define( 'WP_DEBUG', true );
+	defined( 'WP_DEBUG' ) || define( 'WP_DEBUG', false );
+	// error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_WARNING);
+
 
 	/**
 	 * Set WordPress Database Table prefix if not already set.

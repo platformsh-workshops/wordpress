@@ -33,3 +33,9 @@ https://github.com/platformsh-workshops/nodecongress
 - brew install mkcert nss
 - ddev composer install
 - ddev wp core install --url="${WP_SITEURL}" --title="Deploy Friday" --admin_user="admin" --admin_password="Admin1234" --admin_email="admin@example.com" --path='wordpress'
+
+## Issues/ToDo
+
+- Move over Django fundamentals docs
+- akismet plugin not moving over to `plugins`?
+- should ddev config be moved over at all? Or merely reference that another port can be configured?

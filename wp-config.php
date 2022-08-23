@@ -19,6 +19,12 @@ if (isset($_SERVER['HTTP_HOST'])) {
 }
 
 if ($config->isValidPlatform()) {
+	// Do not put a slash "/" at the end.
+	// https://codex.wordpress.org/Editing_wp-config.php#WP_HOME
+	define( 'WP_HOME', $site_scheme . '://' . $site_host );
+	// Do not put a slash "/" at the end.
+	// https://codex.wordpress.org/Editing_wp-config.php#WP_SITEURL
+	define( 'WP_SITEURL', WP_HOME );
 	if ($config->hasRelationship('database')) {
 		// This is where we get the relationships of our application dynamically
 		// from Platform.sh.
@@ -94,14 +100,19 @@ else {
   if (file_exists(dirname(__FILE__, 2) . '/wp-config-local.php')) {
     include(dirname(__FILE__, 2) . '/wp-config-local.php');
   }
+  // Include for ddev-managed settings in wp-config-ddev.php.
+  $ddev_settings = dirname(__FILE__) . '/wp-config-ddev.php';
+  if (is_readable($ddev_settings) && !defined('DB_USER')) {
+    require_once($ddev_settings);
+  }
 }
 
-// Do not put a slash "/" at the end.
-// https://codex.wordpress.org/Editing_wp-config.php#WP_HOME
-define( 'WP_HOME', $site_scheme . '://' . $site_host );
-// Do not put a slash "/" at the end.
-// https://codex.wordpress.org/Editing_wp-config.php#WP_SITEURL
-define( 'WP_SITEURL', WP_HOME );
+// // Do not put a slash "/" at the end.
+// // https://codex.wordpress.org/Editing_wp-config.php#WP_HOME
+// define( 'WP_HOME', $site_scheme . '://' . $site_host );
+// // Do not put a slash "/" at the end.
+// // https://codex.wordpress.org/Editing_wp-config.php#WP_SITEURL
+// define( 'WP_SITEURL', WP_HOME );
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content' );
 define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
 

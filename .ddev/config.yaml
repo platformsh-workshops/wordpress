@@ -1,7 +1,7 @@
-name: fundamentals-wordpress
+name: wordpress
 type: wordpress
 docroot: wordpress
-php_version: "8.1"
+php_version: "7.4"
 webserver_type: nginx-fpm
 router_http_port: "8080"
 router_https_port: "443"
@@ -15,9 +15,7 @@ nfs_mount_enabled: false
 mutagen_enabled: false
 use_dns_when_possible: true
 composer_version: "2"
-web_environment:
-- PLATFORM_ENVIRONMENT=pr-1
-- PLATFORM_PROJECT=xnzlkf65xxcwo
+web_environment: []
 nodejs_version: "16"
 
 # Key features of ddev's config.yaml:

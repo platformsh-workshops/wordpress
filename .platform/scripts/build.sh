@@ -60,7 +60,6 @@ composer require johnpbloch/wordpress-core "^$UPSTREAM_CHECKOUT"
 composer require platformsh/config-reader wp-cli/wp-cli-bundle psy/psysh
 # Themes and plugins
 composer require wpackagist-plugin/akismet wpackagist-theme/twentynineteen wpackagist-theme/twentytwentyone wpackagist-theme/twentytwenty 
-composer require wpackagist-theme/neve wpackagist-plugin/templates-patterns-collection
 
 # Prettify
 cat composer.json | jq > composer-pretty.json
@@ -87,7 +86,7 @@ curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-compos
 
 # Copy over files
 cd ..
-rsync -aP --exclude .git --exclude vendor --exclude README.md build/ .
+rsync -aP --exclude .git --exclude vendor --exclude README.md --exclude wp-config.php build/ .
 rm -rf build
 
 # Final composer update
@@ -96,8 +95,8 @@ composer update
 # Configure DDEV
 
 # Commit the changes
-git add .
-git commit -m "Update workshop base."
+# git add .
+# git commit -m "Update workshop base."
 
 
 # To reset to original version

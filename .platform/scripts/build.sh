@@ -5,7 +5,7 @@ UPSTREAM_REMOTE=upstream
 
 UPSTREAM_CHECKOUT=6.0.1
 
-RUNTIME_VERSION='7.4'
+RUNTIME_VERSION='8.1'
 # brew install php@7.4
 brew unlink php && brew link --overwrite --force php@$RUNTIME_VERSION
 php -v
@@ -57,6 +57,7 @@ composer install
 # Unpin johnpblock/wordpress-core
 composer require johnpbloch/wordpress-core "^$UPSTREAM_CHECKOUT"
 # P.sh specific
+# TODO: Remove config-reader requirement.
 composer require platformsh/config-reader wp-cli/wp-cli-bundle psy/psysh
 # Themes and plugins
 composer require wpackagist-plugin/akismet wpackagist-theme/twentynineteen wpackagist-theme/twentytwentyone wpackagist-theme/twentytwenty 

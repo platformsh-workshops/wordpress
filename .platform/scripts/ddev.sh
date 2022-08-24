@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-RUNTIME_VERSION='7.4'
+RUNTIME_VERSION='8.1'
 HTTP_PORT='8080'
 
 composer install

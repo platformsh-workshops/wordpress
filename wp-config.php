@@ -116,6 +116,8 @@ else {
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content' );
 define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
 
+defined( 'WP_DEBUG' ) || define( 'WP_DEBUG', false );
+
 // Disable WordPress from running automatic updates
 define( 'WP_AUTO_UPDATE_CORE', false );
 

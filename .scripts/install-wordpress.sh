@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 
-# Install WordPress
-ddev wp core install --url="${WP_SITEURL}" --title="Platform.sh Workshop" --admin_user="admin" --admin_password="Admin1234" --admin_email="admin@example.com" --path='wordpress'
+if [[ -z "${PLATFORM_PROJECT_ENTROPY}" ]]; then
+    printf "\nNot on a Platform.sh environment."
+    # Install WordPress
+    ddev wp core install --url="${WP_SITEURL}" --title="Platform.sh Workshop" --admin_user="admin" --admin_password="Admin1234" --admin_email="admin@example.com" --path='wordpress'
 
-# Enable plugins
+    # Set permalink structure
+    ddev wp option update "permalink_structure" "/%year%/%monthnum%/%postname%/" --path='wordpress'
+    ddev wp rewrite flush --path='wordpress'
+else
+    printf "\nOn a Platform.sh environment."
+    # Install WordPress
+    wp core install --url="${WP_SITEURL}" --title="Platform.sh Workshop" --admin_user="admin" --admin_password="Admin1234" --admin_email="admin@example.com" --path='wordpress'
 
-# Set permalink structure
-ddev wp option update "permalink_structure" "/%year%/%monthnum%/%postname%/" --path='wordpress'
-ddev wp rewrite flush --path='wordpress'
+    # Set permalink structure
+    wp option update "permalink_structure" "/%year%/%monthnum%/%postname%/" --path='wordpress'
+    wp rewrite flush --path='wordpress'
+fi

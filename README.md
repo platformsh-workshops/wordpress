@@ -39,3 +39,4 @@ https://github.com/platformsh-workshops/nodecongress
 - Move over Django fundamentals docs
 - akismet plugin not moving over to `plugins`?
 - should ddev config be moved over at all? Or merely reference that another port can be configured?
+- ddev/ w/o ddev wp commands?

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ -z "${PLATFORM_PROJECT_ENTROPY}" ]]; then
-    printf "\nNot on a Platform.sh environment."
+    printf "\nNot on a Platform.sh environment.\n"
     # Install WordPress
     ddev wp core install --url="${WP_SITEURL}" --title="Platform.sh Workshop" --admin_user="admin" --admin_password="Admin1234" --admin_email="admin@example.com" --path='wordpress'
 
@@ -9,7 +9,7 @@ if [[ -z "${PLATFORM_PROJECT_ENTROPY}" ]]; then
     ddev wp option update "permalink_structure" "/%year%/%monthnum%/%postname%/" --path='wordpress'
     ddev wp rewrite flush --path='wordpress'
 else
-    printf "\nOn a Platform.sh environment."
+    printf "\nOn a Platform.sh environment.\n"
     # Install WordPress
     wp core install --url="${WP_SITEURL}" --title="Platform.sh Workshop" --admin_user="admin" --admin_password="Admin1234" --admin_email="admin@example.com" --path='wordpress'
 

@@ -4,14 +4,14 @@ type: "php:8.1"
 
 # Builds.
 build:
-    flavor: none
+    flavor: composer
 dependencies:
     php:
         composer/composer: '^2'
-hooks:
-    build: |
-        set -eu
-        composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
+# hooks:
+#     build: |
+#         set -eu
+#         composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
 
 # Web configuration
 web:

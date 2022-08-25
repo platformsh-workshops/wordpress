@@ -95,9 +95,9 @@ build () {
 cleanup
 build
 
-.platform/scripts/configure-ddev.sh
+.scripts/configure-ddev.sh
 
 ddev start
 
-.platform/scripts/install-wordpress.sh
-.platform/scripts/seed-wordpress.sh
+.scripts/install-wordpress.sh
+.scripts/seed-wordpress.sh

@@ -1,19 +1,17 @@
 #!/usr/bin/env bash
 
 TMP_BUILD=build
-RUNTIME_VERSION='8.1'
+RUNTIME_VERSION=$(yq -r '.type | split(":") | .[1]' .platform.app.yaml)
 
 # Setup PHP
 # brew install php@7.4
 brew unlink php && brew link --overwrite --force php@$RUNTIME_VERSION
 php -v
-# Use Composer 1
-# To reset to original version: composer self-update --2
-# composer self-update --1
 
 # Create the project
 composer create-project johnpbloch/wordpress $TMP_BUILD --no-plugins
 cd $TMP_BUILD
+
 # Composer: allow-plugins
 composer config --no-plugins allow-plugins.johnpbloch/wordpress-core-installer true
 composer config --no-plugins allow-plugins.composer/installers true
@@ -37,15 +35,18 @@ composer config scripts.post-install-cmd "@subdirComposer"
 # Composer: extra.installer-paths
 composer config extra.installer-paths --json '{"wordpress/wp-content/plugins/{$name}":["type:wordpress-plugin"], "wordpress/wp-content/themes/{$name}":["type:wordpress-theme"], "wordpress/wp-content/mu-plugins/{$name}":["type:wordpress-muplugin"]}'
 
-# Composer dependencies
+# Composer: Additional dependencies
 # - Unpin johnpblock/wordpress-core
 UPSTREAM_VERSION=$(cat composer.json | jq -r '.require["johnpbloch/wordpress-core"]')
 composer require johnpbloch/wordpress-core "^$UPSTREAM_VERSION"
 # - P.sh specific
 # * TODO: Remove config-reader requirement.
+# * TODO: inlude P.sh script.
 composer require platformsh/config-reader wp-cli/wp-cli-bundle psy/psysh
-# - Themes and plugins
-composer require wpackagist-plugin/akismet wpackagist-theme/twentynineteen wpackagist-theme/twentytwentyone wpackagist-theme/twentytwenty 
+# - Themes
+composer require wpackagist-theme/twentynineteen wpackagist-theme/twentytwentyone wpackagist-theme/twentytwenty
+# - Plugins
+composer require wpackagist-plugin/akismet
 
 # Prettify
 cat composer.json | jq > composer-pretty.json
@@ -62,8 +63,8 @@ curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-compos
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.lando.upstream.yml" > .lando.upstream.yml
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/example.wp-config-local.php" > example.wp-config-local.php
 
-mkdir plugins
-curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/plugins/README.txt" > plugins/README.txt
+# mkdir plugins
+# curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/plugins/README.txt" > plugins/README.txt
 
 # mkdir .platform
 # curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform.app.yaml" > .platform.app.yaml
@@ -84,5 +85,7 @@ composer update
 # git add .
 # git commit -m "Update workshop base."
 
-# # To reset to original version
+# To reset to original php version
 brew unlink php && brew link php
+# To reset to original composer version
+# composer self-update --2

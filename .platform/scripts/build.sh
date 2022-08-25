@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-UPSTREAM_REPO=https://github.com/johnpbloch/wordpress.git
-UPSTREAM_REMOTE=upstream
-
-UPSTREAM_CHECKOUT=6.0.1
-
+TMP_BUILD=build
 RUNTIME_VERSION='8.1'
+
+# Setup PHP
 # brew install php@7.4
 brew unlink php && brew link --overwrite --force php@$RUNTIME_VERSION
 php -v
@@ -13,21 +11,12 @@ php -v
 # To reset to original version: composer self-update --2
 # composer self-update --1
 
-# CURRENT_BRANCH=$(git branch --show-current)
-
-# Create build dir
-mkdir build && cd build
-git init
-
-# Upstream repo
-git remote add upstream $UPSTREAM_REPO
-git remote -v
-
-# Upstream fetch
-git fetch $UPSTREAM_REMOTE --depth=2
-git fetch $UPSTREAM_REMOTE --tags
-git checkout $UPSTREAM_CHECKOUT
-# git switch -c $CURRENT_BRANCH
+# Create the project
+composer create-project johnpbloch/wordpress $TMP_BUILD --no-plugins
+cd $TMP_BUILD
+# Composer: allow-plugins
+composer config --no-plugins allow-plugins.johnpbloch/wordpress-core-installer true
+composer config --no-plugins allow-plugins.composer/installers true
 
 # Composer: name
 composer config name platformsh/workshop-wordpress
@@ -35,12 +24,8 @@ composer config name platformsh/workshop-wordpress
 # Composer: description
 composer config description "Platform.sh fundamentals workshop using Composer-based WordPress."
 
-# Composer: allow-plugins
-composer config --no-plugins allow-plugins.johnpbloch/wordpress-core-installer true
-composer config --no-plugins allow-plugins.composer/installers true
-
 # Composer: platform
-# composer config platform.php $RUNTIME_VERSION
+composer config platform.php $RUNTIME_VERSION
 
 # Composer: repositories
 composer config repositories.0 --json '{"type": "composer", "url": "https://wpackagist.org"}'
@@ -53,13 +38,13 @@ composer config scripts.post-install-cmd "@subdirComposer"
 composer config extra.installer-paths --json '{"wordpress/wp-content/plugins/{$name}":["type:wordpress-plugin"], "wordpress/wp-content/themes/{$name}":["type:wordpress-theme"], "wordpress/wp-content/mu-plugins/{$name}":["type:wordpress-muplugin"]}'
 
 # Composer dependencies
-composer install
-# Unpin johnpblock/wordpress-core
-composer require johnpbloch/wordpress-core "^$UPSTREAM_CHECKOUT"
-# P.sh specific
-# TODO: Remove config-reader requirement.
+# - Unpin johnpblock/wordpress-core
+UPSTREAM_VERSION=$(cat composer.json | jq -r '.require["johnpbloch/wordpress-core"]')
+composer require johnpbloch/wordpress-core "^$UPSTREAM_VERSION"
+# - P.sh specific
+# * TODO: Remove config-reader requirement.
 composer require platformsh/config-reader wp-cli/wp-cli-bundle psy/psysh
-# Themes and plugins
+# - Themes and plugins
 composer require wpackagist-plugin/akismet wpackagist-theme/twentynineteen wpackagist-theme/twentytwentyone wpackagist-theme/twentytwenty 
 
 # Prettify
@@ -87,18 +72,17 @@ curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-compos
 
 # Copy over files
 cd ..
-rsync -aP --exclude .git --exclude vendor --exclude README.md --exclude wp-config.php build/ .
-rm -rf build
+rsync -aP --exclude .git --exclude README.md --exclude wp-config.php $TMP_BUILD/ .
+
+# Cleanup
+rm -rf $TMP_BUILD
 
 # Final composer update
 composer update
-
-# Configure DDEV
 
 # Commit the changes
 # git add .
 # git commit -m "Update workshop base."
 
-
-# To reset to original version
+# # To reset to original version
 brew unlink php && brew link php

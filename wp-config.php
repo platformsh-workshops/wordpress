@@ -96,6 +96,9 @@ if ($config->isValidPlatform()) {
 	}
 }
 else {
+   if (!defined( 'WP_DEBUG' )) {
+	  define( 'WP_DEBUG', false );
+   }
   // Local configuration file should be in project root.
   if (file_exists(dirname(__FILE__, 2) . '/wp-config-local.php')) {
     include(dirname(__FILE__, 2) . '/wp-config-local.php');
@@ -116,7 +119,7 @@ else {
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content' );
 define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
 
-defined( 'WP_DEBUG' ) || define( 'WP_DEBUG', false );
+// defined( 'WP_DEBUG' ) || define( 'WP_DEBUG', false );
 
 // Disable WordPress from running automatic updates
 define( 'WP_AUTO_UPDATE_CORE', false );

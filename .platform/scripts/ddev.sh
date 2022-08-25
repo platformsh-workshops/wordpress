@@ -3,6 +3,8 @@
 RUNTIME_VERSION='8.1'
 HTTP_PORT='8080'
 
+printf "\n.ddev" >> .gitignore 
+
 composer install
 ddev config --project-type=wordpress --docroot=wordpress --php-version=$RUNTIME_VERSION --http-port=$HTTP_PORT
 

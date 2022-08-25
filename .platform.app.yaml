@@ -50,11 +50,11 @@ web:
                     expires: 1w
 # Variables
 variables:
-  php:
-    session.gc_maxlifetime: '200000'
-    session.cookie_lifetime: '2000000'
-    pcre.backtrack_limit: '200000'
-    pcre.recursion_limit: '200000'
+    php:
+        session.gc_maxlifetime: '200000'
+        session.cookie_lifetime: '2000000'
+        pcre.backtrack_limit: '200000'
+        pcre.recursion_limit: '200000'
 
 # Services
 relationships:

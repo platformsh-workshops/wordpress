@@ -9,8 +9,10 @@ dependencies:
     php:
         composer/composer: '^2'
         wp-cli/wp-cli-bundle: "^2.6"
-# hooks:
-#     build: |
+hooks:
+    build: |
+        composer remove wpackagist-plugin/akismet
+        composer require wpackagist-plugin/akismet
 #         set -eu
 #         composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
 

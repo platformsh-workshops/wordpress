@@ -40,3 +40,4 @@ https://github.com/platformsh-workshops/nodecongress
 - akismet plugin not moving over to `plugins`?
 - should ddev config be moved over at all? Or merely reference that another port can be configured?
 - ddev/ w/o ddev wp commands?
+- having to use `--path="wordpress"` on EVERYTHING

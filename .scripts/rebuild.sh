@@ -53,11 +53,14 @@ build () {
     composer require johnpbloch/wordpress-core "^$UPSTREAM_VERSION"
     # - P.sh specific
     # * TODO: Remove config-reader requirement.
-    # * TODO: inlude P.sh script.
-    composer require platformsh/config-reader wp-cli/wp-cli-bundle psy/psysh
+    # * TODO: include P.sh script.
+    composer require platformsh/config-reader 
+    composer require wp-cli/wp-cli-bundle 
+    composer require psy/psysh
     # - Themes
     composer require wpackagist-theme/twentynineteen wpackagist-theme/twentytwentyone wpackagist-theme/twentytwenty
     # - Plugins
+    composer remove wpackagist-plugin/akismet
     composer require wpackagist-plugin/akismet
 
     # Prettify
@@ -68,6 +71,7 @@ build () {
     composer update
 
     # Get files
+    # * TODO: wp-cli isn't updated 
     curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/wp-cli.yml"  > wp-cli.yml
     curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.editorconfig" > .editorconfig
     curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.gitignore" > .gitignore

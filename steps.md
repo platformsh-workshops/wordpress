@@ -47,7 +47,7 @@
 
 ### New features
 
-1. Something
+1. Move to the api subdomain on a new env
 
 ### Next steps
 

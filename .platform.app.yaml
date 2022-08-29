@@ -1,8 +1,8 @@
-# Container config.
+# 1. Container config.
 name: app
 type: "php:8.1"
 
-# Builds.
+# 2. Builds.
 build:
     flavor: composer
 dependencies:
@@ -12,10 +12,10 @@ dependencies:
 hooks:
     build: |
         set -eu
-        rsync -a plugins/* wordpress/wp-content/plugins/
+        # rsync -a plugins/* wordpress/wp-content/plugins/
         ./scripts/reinstall-default-packages.sh
 
-# Web configuration
+# 3. Web configuration
 web:
     locations:
         "/":
@@ -50,19 +50,12 @@ web:
                 '(?<!\-lock)\.(?i:jpe?g|gif|png|svg|bmp|ico|css|js(?:on)?|eot|ttf|woff|woff2|pdf|docx?|xlsx?|pp[st]x?|psd|odt|key|mp[2-5g]|m4[av]|og[gv]|wav|mov|wm[av]|avi|3g[p2])$':
                     allow: true
                     expires: 1w
-# Variables
-variables:
-    php:
-        session.gc_maxlifetime: '200000'
-        session.cookie_lifetime: '2000000'
-        pcre.backtrack_limit: '200000'
-        pcre.recursion_limit: '200000'
 
-# Services
+# 4. Services
 relationships:
     database: "db:mysql"
 
-# Data
+# 5. Data
 disk: 2048
 mounts:
     "wordpress/wp-content/cache":
@@ -71,3 +64,11 @@ mounts:
     "wordpress/wp-content/uploads":
         source: local
         source_path: "uploads"
+
+# 6. Variables
+variables:
+    php:
+        session.gc_maxlifetime: '200000'
+        session.cookie_lifetime: '2000000'
+        pcre.backtrack_limit: '200000'
+        pcre.recursion_limit: '200000'

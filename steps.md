@@ -16,6 +16,15 @@
 
 1. platform create
 1. Add platform config
+    - services.yaml
+    - app.yaml
+        1. container config
+        2. Builds
+        3. Web configuration
+        4. Relationships.
+        5. Mounts
+        6. Variables
+    - routes.yaml
 1. Create GitHub repo?
 1. Create integration?
 1. git push platform main

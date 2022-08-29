@@ -1,5 +1,5 @@
 # 1. Container config.
-name: app
+name: wordpress
 type: "php:8.1"
 
 # 2. Builds.

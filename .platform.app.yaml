@@ -11,15 +11,9 @@ dependencies:
         wp-cli/wp-cli-bundle: "^2.6"
 hooks:
     build: |
-        set -e
-        # Copy manually-provided plugins into the plugins directory.
-        # This allows manually-provided and composer-provided plugins to coexist.
-        # rsync -a plugins/* wordpress/wp-content/plugins/
-        composer remove wpackagist-plugin/akismet
-        rm -rf wordpress/wp-content/plugins/akismet
-        composer require wpackagist-plugin/akismet
-#         set -eu
-#         composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
+        set -eu
+        rsync -a plugins/* wordpress/wp-content/plugins/
+        ./scripts/reinstall-default-packages.sh
 
 # Web configuration
 web:

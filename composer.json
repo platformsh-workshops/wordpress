@@ -26,21 +26,19 @@
     "php": ">=5.6.20",
     "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
     "johnpbloch/wordpress-core": "^6.0.1",
-    "platformsh/config-reader": "^2.4",
     "wp-cli/wp-cli-bundle": "^2.6",
     "psy/psysh": "^0.11.8",
+    "platformsh/config-reader": "^2.4",
     "wpackagist-theme/twentynineteen": "^2.3",
-    "wpackagist-theme/twentytwentyone": "^1.6",
     "wpackagist-theme/twentytwenty": "^2.0",
+    "wpackagist-theme/twentytwentyone": "^1.6",
+    "wpackagist-theme/twentytwentytwo": "^1.2",
     "wpackagist-plugin/akismet": "^5.0"
   },
   "config": {
     "allow-plugins": {
       "johnpbloch/wordpress-core-installer": true,
       "composer/installers": true
-    },
-    "platform": {
-      "php": "8.1"
     }
   },
   "repositories": [
@@ -56,6 +54,7 @@
     "post-install-cmd": "@subdirComposer"
   },
   "extra": {
+    "wordpress-install-dir": "wordpress",
     "installer-paths": {
       "wordpress/wp-content/plugins/{$name}": [
         "type:wordpress-plugin"

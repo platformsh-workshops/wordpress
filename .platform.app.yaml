@@ -13,7 +13,7 @@ hooks:
     build: |
         set -eu
         # rsync -a plugins/* wordpress/wp-content/plugins/
-        ./scripts/reinstall-default-packages.sh
+        .scripts/reinstall-default-packages.sh
 
 # 3. Web configuration
 web:

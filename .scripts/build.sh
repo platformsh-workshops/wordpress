@@ -60,6 +60,12 @@ composer require platformsh/config-reader --no-install
 # Composer: WP Themes
 composer require wpackagist-theme/twentynineteen wpackagist-theme/twentytwenty wpackagist-theme/twentytwentyone wpackagist-theme/twentytwentytwo --no-install
 
+# Composer: decoupled dependencies
+# composer require wpackagist-plugin/wp-graphql
+
+# composer require wp-graphql wp-graphql-jwt-authentication headless-frontend-preview wp-graphql-jwt-authentication-wp-cli
+
+
 # Composer: WP Plugins
 composer require wpackagist-plugin/akismet --no-install
 

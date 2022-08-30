@@ -22,7 +22,7 @@ web:
             # The public directory of the app, relative to its root.
             root: "wordpress"
             # The front-controller script to send non-static requests to.
-            passthru: "/index.php"
+            passthru: "/api/index.php"
             # Wordpress has multiple roots (wp-admin) so the following is required
             index:
                 - "index.php"

@@ -37,11 +37,11 @@ web:
                     allow: false
                 ^/readme\.html$:
                     allow: false
-        "/wp-content/cache":
+        "/api/wp-content/cache":
             root: "wordpress/wp-content/cache"
             scripts: false
             allow: false
-        "/wp-content/uploads":
+        "/api/wp-content/uploads":
             root: "wordpress/wp-content/uploads"
             scripts: false
             allow: false

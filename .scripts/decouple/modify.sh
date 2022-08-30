@@ -23,6 +23,7 @@ ddev wp plugin activate wp-graphql-jwt-authentication
 get_nextjs_frontend
 
 # Update routes.yaml
+# TODO: use subpaths, not subdomains
 NEXTJS_APP_NAME=$(yq -r '.name' nextjs/.platform.app.yaml)
 printf "
 https://www.{default}/:
@@ -49,6 +50,7 @@ printf "WORDPRESS_API_URL=${BACKEND_URL}/graphql
 IMAGE_DOMAIN=${STRIPPED_URL}" > .env.local
 
 # Platform.sh vars
+# TODO: grab the id from routes.yaml
 printf "
 ENVIRONMENT=\$(echo \$PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.id == \"api\") | .key')
 export WORDPRESS_API_URL=\${ENVIRONMENT%%/}

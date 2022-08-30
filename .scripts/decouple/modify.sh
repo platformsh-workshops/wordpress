@@ -21,6 +21,22 @@ ddev wp plugin activate wp-graphql-jwt-authentication
 
 # Get the nextjs frontend
 get_nextjs_frontend
+
+# Update routes.yaml
+NEXTJS_APP_NAME=$(yq -r '.name' nextjs/.platform.app.yaml)
+printf "
+https://www.{default}/:
+    type: redirect
+    to: \"https://{default}/\"
+
+https://{default}/:
+    type: upstream
+    primary: true
+    id: \"nextjs\"
+    upstream: \"$NEXTJS_APP_NAME:http\"
+" >> .platform/routes.yaml
+
+# Update the frontend.
 cd nextjs
 rm first_deploy.js README.md
 corepack yarn install
@@ -31,6 +47,13 @@ STRIPPED_URL=$(echo $BACKEND_URL | awk -F/ '{print $3}')
 # Local env vars
 printf "WORDPRESS_API_URL=${BACKEND_URL}/graphql
 IMAGE_DOMAIN=${STRIPPED_URL}" > .env.local
+
+# Platform.sh vars
+printf "
+ENVIRONMENT=\$(echo \$PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.id == \"api\") | .key')
+export WORDPRESS_API_URL=\${ENVIRONMENT%%/}
+export IMAGE_DOMAIN=\$(echo \$WORDPRESS_API_URL | awk -F/ '{print \$3}')
+" > .environment
 
 # Update next.config.js (https://nextjs.org/docs/messages/generatebuildid-not-a-string)
 printf "
@@ -47,6 +70,7 @@ module.exports = {
 }
 " > next.config.js
 
+# We need to explictly tell Node to trust mkcert CAs.
 export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
 
 corepack yarn build
@@ -61,5 +85,5 @@ Run the built site with the following:
 "
 
 # Update .gitignore (ignore nextjs app for now)
-printf "\nnextjs" >> ../.gitignore 
+# printf "\nnextjs" >> ../.gitignore 
 

@@ -1,0 +1,4 @@
+
+ENVIRONMENT=$(echo $PLATFORM_ROUTES' | base64 --decode | jq -r 'to_entries[] | select(.value.id == "api") | .key')
+export WORDPRESS_API_URL=${ENVIRONMENT%/}
+export IMAGE_DOMAIN=$(echo $WORDPRESS_API_URL | awk -F/ '{print $3}')

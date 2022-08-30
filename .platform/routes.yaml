@@ -6,7 +6,7 @@
 "https://api.{default}/":
     type: upstream
     upstream: "wordpress:http"
-    id: wordpress
+    id: api
     cache:
         enabled: true
         # Base the cache on the session cookies. Ignore all other cookies.
@@ -20,3 +20,14 @@
 "https://www.api.{default}/":
     type: redirect
     to: "https://api.{default}/"
+
+
+https://www.{default}/:
+    type: redirect
+    to: "https://{default}/"
+
+https://{default}/:
+    type: upstream
+    primary: true
+    id: "nextjs"
+    upstream: "nextjs:http"

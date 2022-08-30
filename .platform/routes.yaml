@@ -3,7 +3,7 @@
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
 
-"https://api.{default}/":
+"https://{default}/api":
     type: upstream
     upstream: "wordpress:http"
     id: api
@@ -17,7 +17,7 @@
             - '/^wp-settings-/'
             - '/^wp-postpass/'
 
-"https://www.api.{default}/":
+"https://www.{default}/api":
     type: redirect
     to: "https://api.{default}/"
 

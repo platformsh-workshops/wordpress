@@ -1,0 +1,35 @@
+# 1. Container config.
+name: nextjs
+type: 'nodejs:16'
+
+# 2. Builds & variables.
+build:
+    flavor: none
+variables:
+    env:
+        NODE_OPTIONS: --max-old-space-size=1536
+size: L
+resources:
+    base_memory: 1024
+    memory_ratio: 1024
+hooks:
+    build: |
+        set -eu
+        corepack yarn install --immutable
+
+# 3. Web configuration.
+web:
+    commands:
+        start: |
+            corepack yarn build
+            corepack yarn start
+
+# 4. Data.
+disk: 512
+mounts:
+  /.cache:
+    source: local
+    source_path: 'cache'
+  /.next:
+    source: local
+    source_path: 'next'

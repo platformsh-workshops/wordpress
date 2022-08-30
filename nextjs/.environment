@@ -1,0 +1,6 @@
+
+ENVIRONMENT=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.id == "api") | .key')
+STRIPPED_ENVIRONMENT=${ENVIRONMENT%/}
+
+export WORDPRESS_API_URL="${ENVIRONMENT}graphql"
+export IMAGE_DOMAIN=$(echo $STRIPPED_ENVIRONMENT | awk -F/ '{print $3}')

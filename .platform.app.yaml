@@ -1,0 +1,73 @@
+# 1. Container config.
+name: wordpress
+type: "php:8.1"
+
+# 2. Builds.
+build:
+    flavor: composer
+dependencies:
+    php:
+        composer/composer: '^2'
+        wp-cli/wp-cli-bundle: "^2.6"
+hooks:
+    build: |
+        set -eu
+        .scripts/reinstall-default-packages.sh
+
+# 3. Web configuration
+web:
+    locations:
+        "/api":
+            # The public directory of the app, relative to its root.
+            root: "wordpress"
+            # The front-controller script to send non-static requests to.
+            passthru: "/api/index.php"
+            # Wordpress has multiple roots (wp-admin) so the following is required
+            index:
+                - "index.php"
+            # The number of seconds whitelisted (static) content should be cached.
+            expires: 600
+            scripts: true
+            allow: true
+            rules:
+                ^/composer\.json:
+                    allow: false
+                ^/license\.txt$:
+                    allow: false
+                ^/readme\.html$:
+                    allow: false
+        "/api/wp-content/cache":
+            root: "wordpress/wp-content/cache"
+            scripts: false
+            allow: false
+        "/api/wp-content/uploads":
+            root: "wordpress/wp-content/uploads"
+            scripts: false
+            allow: false
+            rules:
+                # Allow access to common static files.
+                '(?<!\-lock)\.(?i:jpe?g|gif|png|svg|bmp|ico|css|js(?:on)?|eot|ttf|woff|woff2|pdf|docx?|xlsx?|pp[st]x?|psd|odt|key|mp[2-5g]|m4[av]|og[gv]|wav|mov|wm[av]|avi|3g[p2])$':
+                    allow: true
+                    expires: 1w
+
+# 4. Services
+relationships:
+    database: "db:mysql"
+
+# 5. Data
+disk: 2048
+mounts:
+    "wordpress/wp-content/cache":
+        source: local
+        source_path: "cache"
+    "wordpress/wp-content/uploads":
+        source: local
+        source_path: "uploads"
+
+# 6. Variables
+variables:
+    php:
+        session.gc_maxlifetime: '200000'
+        session.cookie_lifetime: '2000000'
+        pcre.backtrack_limit: '200000'
+        pcre.recursion_limit: '200000'

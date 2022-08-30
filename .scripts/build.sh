@@ -81,7 +81,7 @@ composer install
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.editorconfig" > .editorconfig
 curl -s "https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.gitignore" > .gitignore
 
-# Update .gitignore
+# Update .gitignore (ignore .ddev config for now)
 printf "\n.ddev" >> .gitignore 
 
 reset_php_env

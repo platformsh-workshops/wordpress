@@ -8,6 +8,8 @@ cleanup () {
     rm -rf wordpress
     rm -rf vendor
     rm composer.json composer.lock
+    rm -rf nextjs
+    unset NODE_EXTRA_CA_CERTS
 }
 
 cleanup

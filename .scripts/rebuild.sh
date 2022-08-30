@@ -10,3 +10,4 @@ ddev start
 
 .scripts/install-wordpress.sh
 .scripts/seed-wordpress.sh
+.scripts/decouple/modify.sh

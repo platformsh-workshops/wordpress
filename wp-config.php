@@ -21,7 +21,8 @@ if (isset($_SERVER['HTTP_HOST'])) {
 if ($config->isValidPlatform()) {
 	// Do not put a slash "/" at the end.
 	// https://codex.wordpress.org/Editing_wp-config.php#WP_HOME
-	define( 'WP_HOME', $site_scheme . '://' . $site_host );
+	// define( 'WP_HOME', $site_scheme . '://' . $site_host );
+	define( 'WP_HOME', $site_scheme . '://' . $site_host . '/api');
 	// Do not put a slash "/" at the end.
 	// https://codex.wordpress.org/Editing_wp-config.php#WP_SITEURL
 	define( 'WP_SITEURL', WP_HOME );

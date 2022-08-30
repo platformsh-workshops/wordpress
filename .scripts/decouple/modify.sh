@@ -51,10 +51,17 @@ IMAGE_DOMAIN=${STRIPPED_URL}" > .env.local
 
 # Platform.sh vars
 # TODO: grab the id from routes.yaml
+ENVIRONMENT=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.id == "api") | .key')
+STRIPPED_ENVIRONMENT=\${ENVIRONMENT%%/}
+
+export WORDPRESS_API_URL="${ENVIRONMENT}graphql"
+export IMAGE_DOMAIN=$(echo $STRIPPED_ENVIRONMENT | awk -F/ '{print $3}')
 printf "
 ENVIRONMENT=\$(echo \$PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.id == \"api\") | .key')
-export WORDPRESS_API_URL=\${ENVIRONMENT%%/}
-export IMAGE_DOMAIN=\$(echo \$WORDPRESS_API_URL | awk -F/ '{print \$3}')
+STRIPPED_ENVIRONMENT=\${ENVIRONMENT%%/}
+
+export WORDPRESS_API_URL=\"\${ENVIRONMENT}graphql\"
+export IMAGE_DOMAIN=\$(echo \$STRIPPED_ENVIRONMENT | awk -F/ '{print \$3}')
 " > .environment
 
 # Update next.config.js (https://nextjs.org/docs/messages/generatebuildid-not-a-string)
